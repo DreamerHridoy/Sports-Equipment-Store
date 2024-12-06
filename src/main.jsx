@@ -4,14 +4,24 @@ import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AddEquipment from "./components/AddEquipment.jsx";
+import ViewDetails from "./components/ViewDetails.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    loader: () => fetch("http://localhost:5000/Equipment"),
   },
   {
     path: "addEquipment",
     element: <AddEquipment></AddEquipment>,
+  },
+  {
+    path: "/details/:id",
+    element: <ViewDetails></ViewDetails>,
+    loader: async ({ params }) =>
+      fetch(`http://localhost:5000/Equipment/${params.id}`).then((res) =>
+        res.json()
+      ),
   },
   {
     path: "updateEquipment",
