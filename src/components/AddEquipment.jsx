@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const AddEquipment = () => {
   const handleAddEquipment = (event) => {
     event.preventDefault();
@@ -34,7 +36,17 @@ const AddEquipment = () => {
       body: JSON.stringify(newEquipment),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "success!",
+            text: "successFully inserted",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
   };
 
   return (
