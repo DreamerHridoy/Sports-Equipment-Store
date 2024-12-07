@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AddEquipment from "./components/AddEquipment.jsx";
 import ViewDetails from "./components/ViewDetails.jsx";
 import UpdateEquipment from "./components/UpdateEquipment.jsx";
+import EquipmentList from "./components/EquipmentList.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,6 +19,11 @@ const router = createBrowserRouter([
     element: <AddEquipment></AddEquipment>,
   },
   {
+    path: "EquipmentList",
+    element: <EquipmentList></EquipmentList>,
+    loader: () => fetch("http://localhost:5000/Equipment"),
+  },
+  {
     path: "/details/:id",
     element: <ViewDetails></ViewDetails>,
     loader: async ({ params }) =>
@@ -25,10 +32,12 @@ const router = createBrowserRouter([
       ),
   },
   {
-    path: "updateEquipment/:id",
+    path: "/updateEquipment/:id",
     element: <UpdateEquipment></UpdateEquipment>,
     loader: ({ params }) =>
-      fetch(`http://localhost:5000/Equipment/${params.id}`),
+      fetch(`http://localhost:5000/Equipment/${params.id}`).then((res) =>
+        res.json()
+      ),
   },
 ]);
 

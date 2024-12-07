@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import EquipmentTable from "./components/EquipmentTable";
+import EquipmentList from "./components/EquipmentList";
 
 function App() {
   const loadedEquipments = useLoaderData();
@@ -11,6 +12,7 @@ function App() {
         Equipment Store: {Equipments.length} Items
       </h1>
       <EquipmentTable Equipments={Equipments} setEquipments={setEquipments} />
+      {/* <EquipmentList Equipments={Equipments} setEquipments={setEquipments} /> */}
     </div>
   );
 }
