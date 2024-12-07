@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AddEquipment from "./components/AddEquipment.jsx";
 import ViewDetails from "./components/ViewDetails.jsx";
+import UpdateEquipment from "./components/UpdateEquipment.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,8 +25,10 @@ const router = createBrowserRouter([
       ),
   },
   {
-    path: "updateEquipment",
-    element: <></>,
+    path: "updateEquipment/:id",
+    element: <UpdateEquipment></UpdateEquipment>,
+    loader: ({ params }) =>
+      fetch(`http://localhost:5000/Equipment/${params.id}`),
   },
 ]);
 

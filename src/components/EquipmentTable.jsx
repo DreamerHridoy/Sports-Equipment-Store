@@ -40,26 +40,34 @@ const EquipmentTable = ({ Equipments, setEquipments }) => {
           </tr>
         </thead>
         <tbody>
-          {Equipments.map((equipment) => (
-            <tr key={equipment._id}>
+          {Equipments.map((Equipment) => (
+            <tr key={Equipment._id}>
               <td className="border border-gray-300 px-4 py-2">
-                {equipment.name}
+                {Equipment.name}
               </td>
               <td className="border border-gray-300 px-4 py-2">
-                {equipment.category}
+                {Equipment.category}
               </td>
               <td className="border border-gray-300 px-4 py-2">
-                ${equipment.price}
+                ${Equipment.price}
               </td>
               <td className="border border-gray-300 px-4 py-2 text-center">
                 <Link
-                  to={`/details/${equipment._id}`}
+                  to={`/details/${Equipment._id}`}
                   className="btn btn-sm btn-primary mx-2"
                 >
                   View Details
                 </Link>
+
+                <Link
+                  to={`updateEquipment/${Equipment._id}`}
+                  className="btn btn-sm btn-secondary mx-2"
+                >
+                  Update
+                </Link>
+
                 <button
-                  onClick={() => handleDeleteEquipment(equipment._id)}
+                  onClick={() => handleDeleteEquipment(Equipment._id)}
                   className="btn btn-sm btn-error"
                 >
                   Delete
