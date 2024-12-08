@@ -11,6 +11,7 @@ import HomeLayout from "./components/Layouts/HomeLayout.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
 import AuthProvider from "./providers/AuthProvider.jsx";
+import Users from "./components/Users.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
     path: "addEquipment",
     element: <AddEquipment></AddEquipment>,
   },
+
   {
     path: "EquipmentList",
     element: <EquipmentList></EquipmentList>,
@@ -50,6 +52,11 @@ const router = createBrowserRouter([
       fetch(`http://localhost:5000/Equipment/${params.id}`).then((res) =>
         res.json()
       ),
+  },
+  {
+    path: "users",
+    element: <Users></Users>,
+    loader: () => fetch("http://localhost:5000/users"),
   },
 ]);
 

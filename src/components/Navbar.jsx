@@ -27,6 +27,11 @@ const Navbar = ({ user }) => {
                 All Sports Equipment
               </Link>
             </li>
+            <li>
+              <Link to="users" className="text-white hover:text-gray-400">
+                Users
+              </Link>
+            </li>
             {user && (
               <>
                 <li>
