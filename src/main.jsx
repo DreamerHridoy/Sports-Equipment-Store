@@ -75,7 +75,11 @@ const router = createBrowserRouter([
       { path: "*", element: <NotFound></NotFound> },
       {
         path: "users",
-        element: <Users></Users>,
+        element: (
+          <PrivateRoute>
+            <Users></Users>
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/users"),
       },
     ],

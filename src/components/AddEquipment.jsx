@@ -4,7 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const AddEquipment = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+
   const handleAddEquipment = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -30,7 +30,6 @@ const AddEquipment = () => {
       stock,
     };
 
-    console.log(newEquipment);
     form.reset();
     fetch("http://localhost:5000/Equipment", {
       method: "POST",
@@ -41,7 +40,6 @@ const AddEquipment = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "success!",

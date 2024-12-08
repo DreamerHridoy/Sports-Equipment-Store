@@ -4,7 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
+
   return (
     <nav className="bg-gray-900 p-4">
       <div className="container mx-auto flex justify-between items-center">
@@ -30,11 +30,7 @@ const Navbar = () => {
                 All Sports Equipment
               </Link>
             </li>
-            <li>
-              <Link to="users" className="text-white hover:text-gray-400">
-                Users
-              </Link>
-            </li>
+
             {user && (
               <>
                 <li>
@@ -51,6 +47,11 @@ const Navbar = () => {
                     className="text-white hover:text-gray-400"
                   >
                     My Equipment List
+                  </Link>
+                </li>
+                <li>
+                  <Link to="users" className="text-white hover:text-gray-400">
+                    Users
                   </Link>
                 </li>
               </>
