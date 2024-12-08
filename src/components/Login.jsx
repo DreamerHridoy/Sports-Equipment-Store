@@ -11,7 +11,7 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+
     signInUser(email, password)
       .then((result) => {
         setUser(result.user);
@@ -27,7 +27,6 @@ const Login = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.modifiedCount > 0) {
               Swal.fire({
                 title: "success!",

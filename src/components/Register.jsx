@@ -27,7 +27,6 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
         setUser(result.user);
         const createdAt = result?.user?.metadata?.creationTime;
         // save userinfo to the database
