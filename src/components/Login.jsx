@@ -1,11 +1,43 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { signInUser } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
-    const enteredEmail = e.target.email.value;
+    const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(enteredEmail, password);
+    console.log(email, password);
+    signInUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+
+        // update last login time
+        const lastSignInTime = result?.user?.metadata?.lastSignInTime;
+        const loginInfo = { email, lastSignInTime };
+        fetch(`http://localhost:5000/users`, {
+          method: "PATCH",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(loginInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.modifiedCount > 0) {
+              Swal.fire({
+                title: "success!",
+                text: "Last Login Time Updated",
+                icon: "success",
+                confirmButtonText: "Cool",
+              });
+            }
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
