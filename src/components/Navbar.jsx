@@ -20,10 +20,7 @@ const Navbar = ({ user }) => {
             </li>
 
             <li>
-              <Link
-                to="/all-sports-equipment"
-                className="text-white hover:text-gray-400"
-              >
+              <Link to="/ Equipment" className="text-white hover:text-gray-400">
                 All Sports Equipment
               </Link>
             </li>
@@ -36,7 +33,7 @@ const Navbar = ({ user }) => {
               <>
                 <li>
                   <Link
-                    to="/add-equipment"
+                    to="addEquipment"
                     className="text-white hover:text-gray-400"
                   >
                     Add Equipment
@@ -44,7 +41,7 @@ const Navbar = ({ user }) => {
                 </li>
                 <li>
                   <Link
-                    to="/my-equipment-list"
+                    to="EquipmentList"
                     className="text-white hover:text-gray-400"
                   >
                     My Equipment List

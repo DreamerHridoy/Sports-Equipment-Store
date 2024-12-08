@@ -12,6 +12,7 @@ import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
 import AuthProvider from "./providers/AuthProvider.jsx";
 import Users from "./components/Users.jsx";
+import NotFound from "./components/NotFound.jsx";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
         res.json()
       ),
   },
+  { path: "*", element: <NotFound></NotFound> },
   {
     path: "users",
     element: <Users></Users>,

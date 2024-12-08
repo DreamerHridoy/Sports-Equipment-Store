@@ -2,52 +2,82 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-8">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Copyright Section */}
-          <div className="mb-4 md:mb-0">
-            <p className="text-sm">
-              &copy; {new Date().getFullYear()} Equipment Store. All rights
-              reserved.
+    <footer className="bg-gray-800 text-gray-300 py-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap justify-between">
+          {/* Brand Section */}
+          <div className="w-full sm:w-1/2 lg:w-1/3 mb-6">
+            <h2 className="text-2xl font-semibold text-white mb-4">
+              Hridoy Equipment Store
+            </h2>
+            <p className="text-gray-400">
+              We are Here For the People,Who loves This World. <br />
+              Who Love This Beautiful Life.
+              <br />
+              Please Come In our Store,And Make Yourself Happy.
             </p>
           </div>
 
-          {/* Contact Information */}
-          <div className="mb-4 md:mb-0">
-            <h4 className="font-bold text-lg mb-2">Contact Us</h4>
-            <p>Email: info@equipmentstore.com</p>
-            <p>Phone: +1 (123) 456-7890</p>
-            <p>Address: 1234 Equipment St, Sports City, SC 12345</p>
+          {/* Quick Links Section */}
+          <div className="w-full sm:w-1/2 lg:w-1/3 mb-6">
+            <h3 className="text-xl font-semibold text-white mb-4">
+              Quick Links
+            </h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="#home" className="hover:text-white">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-white">
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href="#about" className="hover:text-white">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="hover:text-white">
+                  Contact
+                </a>
+              </li>
+            </ul>
           </div>
 
-          {/* Social Media Links */}
-          <div className="flex justify-center md:justify-end">
-            <a
-              href="https://facebook.com"
-              className="text-white mx-2"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a
-              href="https://instagram.com"
-              className="text-white mx-2"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a
-              href="https://twitter.com"
-              className="text-white mx-2"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-twitter"></i>
-            </a>
+          {/* Contact Section */}
+          <div className="w-full sm:w-1/2 lg:w-1/3 mb-6">
+            <h3 className="text-xl font-semibold text-white mb-4">
+              Contact Us
+            </h3>
+            <p className="text-gray-400">Email: hridoyEquipment@store.com</p>
+            <p className="text-gray-400">Phone: +123 456 7890</p>
+            <div className="flex space-x-4 mt-4">
+              {/* Social Media Icons */}
+              <a href="#" className="text-gray-400 hover:text-white">
+                <i className="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white">
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white">
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white">
+                <i className="fab fa-instagram"></i>
+              </a>
+            </div>
           </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="border-t border-gray-700 mt-8 pt-6 text-center">
+          <p className="text-gray-400">
+            &copy; {new Date().getFullYear()}Hridoy Equipment Store. All rights
+            reserved.
+          </p>
         </div>
       </div>
     </footer>

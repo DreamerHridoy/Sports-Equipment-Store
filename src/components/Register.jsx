@@ -3,6 +3,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -15,6 +17,14 @@ const Register = () => {
     const photo = e.target.photo.value;
     const password = e.target.password.value;
     console.log(name, email, photo, password);
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must include at least 6 characters, an uppercase letter, and a lowercase letter."
+      );
+      return;
+    }
+
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
@@ -32,7 +42,7 @@ const Register = () => {
             if (data.insertedId) {
               Swal.fire({
                 title: "success!",
-                text: "successFully inserted",
+                text: "successFully Registred",
                 icon: "success",
                 confirmButtonText: "Cool",
               });
@@ -120,6 +130,7 @@ const Register = () => {
             </Link>
           </p>
         </div>
+        <ToastContainer></ToastContainer>
       </div>
     </>
   );
