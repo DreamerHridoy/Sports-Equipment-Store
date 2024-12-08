@@ -7,13 +7,24 @@ import AddEquipment from "./components/AddEquipment.jsx";
 import ViewDetails from "./components/ViewDetails.jsx";
 import UpdateEquipment from "./components/UpdateEquipment.jsx";
 import EquipmentList from "./components/EquipmentList.jsx";
+import HomeLayout from "./components/Layouts/HomeLayout.jsx";
+import Login from "./components/Login.jsx";
+import Register from "./components/Register.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>,
-    loader: () => fetch("http://localhost:5000/Equipment"),
+    element: <HomeLayout></HomeLayout>,
+    children: [
+      {
+        path: "/",
+        element: <App></App>,
+        loader: () => fetch("http://localhost:5000/Equipment"),
+      },
+    ],
   },
+  { path: "/auth/login", element: <Login></Login> },
+  { path: "/auth/register", element: <Register></Register> },
   {
     path: "addEquipment",
     element: <AddEquipment></AddEquipment>,
