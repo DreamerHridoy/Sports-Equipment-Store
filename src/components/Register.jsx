@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -17,6 +18,26 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
+        const createdAt = result?.user?.metadata?.creationTime;
+        // save userinfo to the database
+        const newUser = { name, email, createdAt };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.insertedId) {
+              Swal.fire({
+                title: "success!",
+                text: "successFully inserted",
+                icon: "success",
+                confirmButtonText: "Cool",
+              });
+            }
+          });
       })
       .catch((error) => {
         console.log(error);
