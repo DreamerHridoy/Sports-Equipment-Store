@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
   return (
     <nav className="bg-gray-900 p-4">
       <div className="container mx-auto flex justify-between items-center">
@@ -20,7 +23,10 @@ const Navbar = ({ user }) => {
             </li>
 
             <li>
-              <Link to="/ Equipment" className="text-white hover:text-gray-400">
+              <Link
+                to="EquipmentTable"
+                className="text-white hover:text-gray-400"
+              >
                 All Sports Equipment
               </Link>
             </li>
@@ -65,7 +71,7 @@ const Navbar = ({ user }) => {
                 {user.displayName}
               </span>
               <button
-                // onClick={() => /* Handle log out logic here */}
+                onClick={() => logOut()}
                 className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
               >
                 Log Out

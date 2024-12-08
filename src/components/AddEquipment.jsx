@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../providers/AuthProvider";
 
 const AddEquipment = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   const handleAddEquipment = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -55,6 +59,27 @@ const AddEquipment = () => {
         <h2 className="text-2xl font-bold mb-6 text-center">Add New Item</h2>
         <form onSubmit={handleAddEquipment} className="grid gap-4">
           {/* Image */}
+          <div>
+            <label className="block font-medium mb-2">Name</label>
+            <input
+              type="url"
+              name="name"
+              defaultValue={user?.name}
+              readOnly
+              className="input input-bordered w-full"
+            />
+          </div>
+
+          <div>
+            <label className="block font-medium mb-2">Email</label>
+            <input
+              type="url"
+              name="photo"
+              defaultValue={user?.email}
+              readOnly
+              className="input input-bordered w-full"
+            />
+          </div>
           <div>
             <label className="block font-medium mb-2">Image URL</label>
             <input

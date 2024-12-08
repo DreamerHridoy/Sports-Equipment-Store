@@ -64,7 +64,7 @@ const UpdateEquipment = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-8 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-bold mb-6 text-center">Add New Item</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">Update Item</h2>
       <form onSubmit={handleUpdateEquipment} className="grid gap-4">
         {/* Image */}
         <div>

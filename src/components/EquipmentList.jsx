@@ -7,36 +7,47 @@ const EquipmentList = () => {
   const loadedEquipments = useLoaderData();
   const [Equipments, setEquipments] = useState(loadedEquipments);
   const handleDeleteEquipment = (_id) => {
-    // Perform delete operation
-    fetch(`http://localhost:5000/Equipment/${_id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.deletedCount > 0) {
-          Swal.fire({
-            title: "Success!",
-            text: "Deleted successfully",
-            icon: "success",
-            confirmButtonText: "Cool",
-          });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/Equipment/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Success!",
+                text: "Deleted successfully",
+                icon: "success",
+                confirmButtonText: "Cool",
+              });
 
-          // Update state to remove the deleted item
-          setEquipments((prevEquipments) =>
-            prevEquipments.filter((item) => item._id !== _id)
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Error deleting equipment:", error);
-        Swal.fire({
-          title: "Error!",
-          text: "Failed to delete equipment",
-          icon: "error",
-          confirmButtonText: "Try Again",
-        });
-      });
+              // Update state to remove the deleted item
+              setEquipments((prevEquipments) =>
+                prevEquipments.filter((item) => item._id !== _id)
+              );
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting equipment:", error);
+            Swal.fire({
+              title: "Error!",
+              text: "Failed to delete equipment",
+              icon: "error",
+              confirmButtonText: "Try Again",
+            });
+          });
+      }
+    });
   };
 
   return (

@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, setUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleRegister = (e) => {
@@ -16,7 +16,7 @@ const Register = () => {
     const email = e.target.email.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
-    console.log(name, email, photo, password);
+
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     if (!passwordRegex.test(password)) {
       toast.error(
@@ -28,6 +28,7 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
+        setUser(result.user);
         const createdAt = result?.user?.metadata?.creationTime;
         // save userinfo to the database
         const newUser = { name, email, createdAt };

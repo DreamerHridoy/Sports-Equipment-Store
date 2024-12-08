@@ -13,6 +13,9 @@ import Register from "./components/Register.jsx";
 import AuthProvider from "./providers/AuthProvider.jsx";
 import Users from "./components/Users.jsx";
 import NotFound from "./components/NotFound.jsx";
+import EquipmentTable from "./components/EquipmentTable.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
+import Home from "./components/Home.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,44 +24,61 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <App></App>,
+        element: <Home></Home>,
+      },
+      {
+        path: "EquipmentTable",
+        element: <EquipmentTable></EquipmentTable>,
         loader: () => fetch("http://localhost:5000/Equipment"),
       },
-    ],
-  },
-  { path: "/auth/login", element: <Login></Login> },
-  { path: "/auth/register", element: <Register></Register> },
-  {
-    path: "addEquipment",
-    element: <AddEquipment></AddEquipment>,
-  },
 
-  {
-    path: "EquipmentList",
-    element: <EquipmentList></EquipmentList>,
-    loader: () => fetch("http://localhost:5000/Equipment"),
-  },
-  {
-    path: "/details/:id",
-    element: <ViewDetails></ViewDetails>,
-    loader: async ({ params }) =>
-      fetch(`http://localhost:5000/Equipment/${params.id}`).then((res) =>
-        res.json()
-      ),
-  },
-  {
-    path: "/updateEquipment/:id",
-    element: <UpdateEquipment></UpdateEquipment>,
-    loader: ({ params }) =>
-      fetch(`http://localhost:5000/Equipment/${params.id}`).then((res) =>
-        res.json()
-      ),
-  },
-  { path: "*", element: <NotFound></NotFound> },
-  {
-    path: "users",
-    element: <Users></Users>,
-    loader: () => fetch("http://localhost:5000/users"),
+      { path: "/auth/login", element: <Login></Login> },
+      { path: "/auth/register", element: <Register></Register> },
+      {
+        path: "addEquipment",
+        element: (
+          <PrivateRoute>
+            <AddEquipment></AddEquipment>
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "EquipmentList",
+        element: (
+          <PrivateRoute>
+            <EquipmentList></EquipmentList>
+          </PrivateRoute>
+        ),
+        loader: () => fetch("http://localhost:5000/Equipment"),
+      },
+      {
+        path: "/details/:id",
+        element: (
+          <PrivateRoute>
+            <ViewDetails></ViewDetails>
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) =>
+          fetch(`http://localhost:5000/Equipment/${params.id}`).then((res) =>
+            res.json()
+          ),
+      },
+      {
+        path: "/updateEquipment/:id",
+        element: <UpdateEquipment></UpdateEquipment>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/Equipment/${params.id}`).then((res) =>
+            res.json()
+          ),
+      },
+      { path: "*", element: <NotFound></NotFound> },
+      {
+        path: "users",
+        element: <Users></Users>,
+        loader: () => fetch("http://localhost:5000/users"),
+      },
+    ],
   },
 ]);
 

@@ -1,10 +1,12 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { signInUser } = useContext(AuthContext);
+  const { signInUser, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -12,7 +14,8 @@ const Login = () => {
     console.log(email, password);
     signInUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        setUser(result.user);
+        navigate(location?.state?.from || "/");
 
         // update last login time
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
