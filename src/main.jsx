@@ -10,6 +10,7 @@ import EquipmentList from "./components/EquipmentList.jsx";
 import HomeLayout from "./components/Layouts/HomeLayout.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
+import AuthProvider from "./providers/AuthProvider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );
