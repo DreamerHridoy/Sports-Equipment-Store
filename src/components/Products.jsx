@@ -5,7 +5,9 @@ const Products = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/limitedEquipment?limit=6")
+    fetch(
+      "https://sports-equipment-server-navy.vercel.app/limitedEquipment?limit=6"
+    )
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error fetching products:", error));

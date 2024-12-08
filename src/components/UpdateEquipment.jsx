@@ -41,7 +41,7 @@ const UpdateEquipment = () => {
     };
 
     form.reset();
-    fetch(`http://localhost:5000/Equipment/${_id}`, {
+    fetch(`https://sports-equipment-server-navy.vercel.app/Equipment/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

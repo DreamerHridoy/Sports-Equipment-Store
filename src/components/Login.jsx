@@ -20,7 +20,7 @@ const Login = () => {
         // update last login time
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const loginInfo = { email, lastSignInTime };
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://sports-equipment-server-navy.vercel.app/users`, {
           method: "PATCH",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(loginInfo),

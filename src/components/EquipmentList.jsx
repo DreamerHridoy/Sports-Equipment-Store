@@ -17,9 +17,12 @@ const EquipmentList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/Equipment/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://sports-equipment-server-navy.vercel.app/Equipment/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {

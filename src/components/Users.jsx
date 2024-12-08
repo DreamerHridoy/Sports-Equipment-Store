@@ -21,12 +21,11 @@ const Users = () => {
         //   text: "Your file has been deleted.",
         //   icon: "success",
         // });
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://sports-equipment-server-navy.vercel.app/users/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",

@@ -29,7 +29,8 @@ const router = createBrowserRouter([
       {
         path: "EquipmentTable",
         element: <EquipmentTable></EquipmentTable>,
-        loader: () => fetch("http://localhost:5000/Equipment"),
+        loader: () =>
+          fetch("https://sports-equipment-server-navy.vercel.app/Equipment"),
       },
 
       { path: "/auth/login", element: <Login></Login> },
@@ -50,7 +51,8 @@ const router = createBrowserRouter([
             <EquipmentList></EquipmentList>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/Equipment"),
+        loader: () =>
+          fetch("https://sports-equipment-server-navy.vercel.app/Equipment"),
       },
       {
         path: "/details/:id",
@@ -60,17 +62,17 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/Equipment/${params.id}`).then((res) =>
-            res.json()
-          ),
+          fetch(
+            `https://sports-equipment-server-navy.vercel.app/Equipment/${params.id}`
+          ).then((res) => res.json()),
       },
       {
         path: "/updateEquipment/:id",
         element: <UpdateEquipment></UpdateEquipment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/Equipment/${params.id}`).then((res) =>
-            res.json()
-          ),
+          fetch(
+            `https://sports-equipment-server-navy.vercel.app/Equipment/${params.id}`
+          ).then((res) => res.json()),
       },
       { path: "*", element: <NotFound></NotFound> },
       {
@@ -80,7 +82,8 @@ const router = createBrowserRouter([
             <Users></Users>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/users"),
+        loader: () =>
+          fetch("https://sports-equipment-server-navy.vercel.app/users"),
       },
     ],
   },

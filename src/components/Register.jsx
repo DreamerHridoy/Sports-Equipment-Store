@@ -31,14 +31,13 @@ const Register = () => {
         const createdAt = result?.user?.metadata?.creationTime;
         // save userinfo to the database
         const newUser = { name, email, createdAt };
-        fetch("http://localhost:5000/users", {
+        fetch("https://sports-equipment-server-navy.vercel.app/users", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(newUser),
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.insertedId) {
               Swal.fire({
                 title: "success!",
