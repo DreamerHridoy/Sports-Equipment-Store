@@ -1,4 +1,4 @@
-🏀 Sports Equipment Store 🏐
+                                             🏀 Sports Equipment Store 🏐
 A full-stack web application for buying and managing sports equipment. Built with React, TailwindCSS, DaisyUI, Firebase, and a backend powered by Express.js, MongoDB, and Node.js.
 
 🚀 Features
